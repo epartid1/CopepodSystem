@@ -463,7 +463,7 @@ static void printDOmgLToSerial (double measure) {
 static double getpH () {
    int16_t pHRaw; //16-bit int dedicated to pH readings to be taken on A2
    pHRaw = adc.readADC_SingleEnded(2);
-   double pHVolt = (pHRaw+4119.7)/2632.9; //with 1x gain 1 bit = 0.125mV
+   double pHVolt = (pHRaw+2390.8)/3135.7; //with 1x gain 1 bit = 0.125mV
    return pHVolt;
 }
 
