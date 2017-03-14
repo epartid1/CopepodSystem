@@ -111,8 +111,8 @@ double doHigh = 6.1;
 const int N2valve = 3;
 
 const int CO2valve = 4;
-double phLow = 5;
-double phHigh = 6;
+double phLow = 1.15;
+double phHigh = 1.2;
 
 //state machine
 #define OFF 0 //state for O2 solenoid valve closed
@@ -207,12 +207,12 @@ void setup() {
 }
 
 
-
 ////////////////////////////////////////////////
 ////    LOOP   ////
 ////////////////////////////////////////////////
 void loop() {
   DateTime curr = rtc.now();
+ 
 
   // open the file for write at end like the Native SD library
   // print error and end execution if unable to open file 
@@ -248,160 +248,168 @@ void loop() {
     printDOmgLToSerial(doMeas);
   }
 
-  while ((int)getMinutes%10 <= 1) {
+int counter=0;
+int counter2=0;
+  while (counter==0) {
     if (phMeas > 5.52) {
       digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, HIGH);
       digitalWrite(O2valve, LOW);
+      
+      counter2++;
+      if(counter2==10) {
+        counter++;
+        counter2=0;
+      }
     }
     else if (phMeas < 4.48) {
       digitalWrite(N2valve, HIGH);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, LOW);
+      
+      counter2++;
+      if(counter2==10) {
+        counter++;
+        counter2=0;
+      }
     }
     else {
       digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
+      digitalWrite(CO2valve, HIGH);
       digitalWrite(O2valve, LOW);
+      
+      counter2++;
+      if(counter2==10) {
+        counter++;
+        counter2=0;
+      }
     }
   }
-  while ((int)getMinutes%10 <= 2 & (int)getMinutes%10 >1 ) {
+  while (counter==1) {
     if (phMeas > 5.77) {
       digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, HIGH);
       digitalWrite(O2valve, LOW);
+      
+      counter2++;
+      if(counter2==10) {
+        counter++;
+        counter2=0;
+      }
     }
     else if (phMeas < 5.72) {
       digitalWrite(N2valve, HIGH);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, LOW);
+      
+      counter2++;
+      if(counter2==10) {
+        counter++;
+        counter2=0;
+      }
     }
     else {
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-    }
-  }
-  while ((int)getMinutes%10 <= 3 & (int)getMinutes%10 > 2) {
-    if (phMeas > 6.02) {
       digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, HIGH);
       digitalWrite(O2valve, LOW);
-    }
-    else if (phMeas < 5.98) {
-      digitalWrite(N2valve, HIGH);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-    }
-    else {
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-    }
-  }
-  while ((int)getMinutes%10 <= 4 & (int)getMinutes%10 >3 ) {
-    if (phMeas > 5.77) {
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, HIGH);
-      digitalWrite(O2valve, LOW);
-    }
-    else if (phMeas < 5.72) {
-      digitalWrite(N2valve, HIGH);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-    }
-    else {
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-    }
-  }
-  while ((int)getMinutes%10 <= 5 & (int)getMinutes%10 >4) {
-    if (phMeas > 5.52) {
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, HIGH);
-      digitalWrite(O2valve, LOW);
-    }
-    else if (phMeas < 4.48) {
-      digitalWrite(N2valve, HIGH);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-    }
-    else {
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-    }
-  }
-  while ((int)getMinutes%10 <= 6 & (int)getMinutes%10 >5 ) {
-    if (phMeas > 5.27) {
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, HIGH);
-      digitalWrite(O2valve, LOW);
-    }
-    else if (phMeas < 5.22) {
-      digitalWrite(N2valve, HIGH);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-    }
-    else {
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-    }
-  }
-  while ((int)getMinutes%10 <= 7 & (int)getMinutes%10 >6) {
-    if (phMeas > 5.02) {
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, HIGH);
-      digitalWrite(O2valve, LOW);
-    }
-    else if (phMeas < 4.98) {
-      digitalWrite(N2valve, HIGH);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-    }
-    else {
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-    }
-  }
-  while ((int)getMinutes%10 <= 8 & (int)getMinutes%10 >7 ) {
-    if (phMeas > 5.27) {
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, HIGH);
-      digitalWrite(O2valve, LOW);
-    }
-    else if (phMeas < 5.22) {
-      digitalWrite(N2valve, HIGH);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-    }
-    else {
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-    }
-  }
-  while ((int)getMinutes%10 <= 9 & (int)getMinutes%10 > 8) {
-    if (phMeas > 5.52) {
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, HIGH);
-      digitalWrite(O2valve, LOW);
-    }
-    else if (phMeas < 4.48) {
-      digitalWrite(N2valve, HIGH);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-    }
-    else {
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
+      
+      counter2++;
+      if(counter2==10) {
+        counter++;
+        counter2=0;
+      }
     }
   }
   
+    digitalWrite(N2valve, LOW);
+    digitalWrite(CO2valve, HIGH);
+    digitalWrite(O2valve, LOW);
+    
+    counter2++;
+    if(counter2==10) {
+        counter++;
+        counter2=0;
+      }
+  
+ 
+
+  
+/*
+  switch(O2state) {
+    case OFF:
+      if(doMeas < doLow) {
+        O2state = ON;
+        digitalWrite(O2valve, HIGH); //open solenoid valve
+        Serial.print("\t");
+        Serial.print("O2 ON");
+      }
+      break; //OFF
+      
+    case ON:
+      if(doMeas > doHigh) {
+        O2state = OFF;
+        digitalWrite(O2valve, LOW); //close solenoid valve 
+        Serial.print("\t"); 
+        Serial.print("O2 OFF");
+      }
+      break; //ON
+    
+    case SHUTDOWN:
+      digitalWrite(O2valve, LOW); //open solenoid valve
+      break; //SHUTDOWN
+
+  }//O2state state machine
+
+  switch(CO2state) {
+     case OFF:
+      if(phMeas > phHigh) {
+        CO2state = ON;
+        digitalWrite(CO2valve, HIGH); //open solenoid valve  
+        Serial.print("\t");
+        Serial.print("CO2 ON");
+      }
+      break; //OFF
+      
+      case ON:
+      if(phMeas < phLow) {
+        CO2state = OFF;
+        digitalWrite(CO2valve, LOW); //open solenoid valve
+        Serial.print("\t");
+        Serial.print("CO2 OFF");
+      }
+      break; //ON
+
+    case SHUTDOWN:
+      digitalWrite(CO2valve, LOW); //open solenoid valve
+      break; //SHUTDOWN
+  }//CO2state state machine
+
+    switch(N2state) {
+     case OFF:
+      if(phMeas < phLow || doMeas > doHigh) {
+        N2state = ON;
+        digitalWrite(N2valve, HIGH); //open solenoid valve  
+        Serial.print("\t");
+        Serial.print("N2 ON");
+      }
+      break; //OFF
+      
+      case ON:
+      if(phMeas > phLow && doMeas < doHigh) {
+        N2state = OFF;
+        digitalWrite(N2valve, LOW); //open solenoid valve
+        Serial.print("\t");
+        Serial.print("N2 OFF");
+      }
+      break; //ON
+
+    case SHUTDOWN:
+      digitalWrite(N2valve, LOW); //open solenoid valve
+      break; //SHUTDOWN
+  }//N2state state machine
+
+*/
+
 
   myFile.println();
   if(serialEcho) {
@@ -459,15 +467,7 @@ static void printTimeToSerial (DateTime curr) {
   Serial.print(curr.second(), DEC);
 }
 
-static int getMinutes (DateTime curr) {
-  int minutes=(curr.minute(), DEC);
-  return minutes;
-}
 
-static int getSeconds (DateTime curr) {
-  int seconds=(curr.second(), DEC);
-  return seconds;
-}
 /*
  * Prints temperature to Serial.
  * 
