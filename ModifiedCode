@@ -249,13 +249,14 @@ void loop() {
   }
 
 int counter=0;
+Serial.println("  Begin");
 int counter2=0;
   while (counter==0) {
     if (phMeas > 5.52) {
       digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, HIGH);
-      digitalWrite(O2valve, LOW);
-      
+      digitalWrite(O2valve, HIGH);
+      delay(1000);
       counter2++;
       if(counter2==10) {
         counter++;
@@ -266,7 +267,7 @@ int counter2=0;
       digitalWrite(N2valve, HIGH);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, LOW);
-      
+      delay(1000);
       counter2++;
       if(counter2==10) {
         counter++;
@@ -275,9 +276,9 @@ int counter2=0;
     }
     else {
       digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, HIGH);
+      digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, LOW);
-      
+      delay(1000);
       counter2++;
       if(counter2==10) {
         counter++;
@@ -289,8 +290,8 @@ int counter2=0;
     if (phMeas > 5.77) {
       digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, HIGH);
-      digitalWrite(O2valve, LOW);
-      
+      digitalWrite(O2valve, HIGH);
+      delay(1000);
       counter2++;
       if(counter2==10) {
         counter++;
@@ -301,7 +302,7 @@ int counter2=0;
       digitalWrite(N2valve, HIGH);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, LOW);
-      
+      delay(1000);
       counter2++;
       if(counter2==10) {
         counter++;
@@ -310,9 +311,9 @@ int counter2=0;
     }
     else {
       digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, HIGH);
+      digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, LOW);
-      
+      delay(1000);
       counter2++;
       if(counter2==10) {
         counter++;
@@ -321,16 +322,16 @@ int counter2=0;
     }
   }
   
-    digitalWrite(N2valve, LOW);
+    /*digitalWrite(N2valve, LOW);
     digitalWrite(CO2valve, HIGH);
     digitalWrite(O2valve, LOW);
-    
+    delay(1000);
     counter2++;
     if(counter2==10) {
         counter++;
         counter2=0;
       }
-  
+  */
  
 
   
