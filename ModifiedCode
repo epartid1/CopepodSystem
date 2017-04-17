@@ -137,7 +137,7 @@ void setup() {
 
   delay(2000); // wait for console opening
   if (serialEcho) {
-    Serial.println("Commencing set-up...");
+    Serial.println("Commencing set up...");
   }
 
   /*  Set-up RTC  */
@@ -160,7 +160,7 @@ void setup() {
     rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
   }
   if (serialEcho) {
-    Serial.println(", rtc set-up...");
+    Serial.println(", rtc set up...");
   }
 
   /*  Set-up SD Card  */
@@ -171,7 +171,7 @@ void setup() {
     sd.initErrorHalt();
   }
   if (serialEcho) {
-    Serial.println("SD card set-up...");
+    Serial.println("SD card set up...");
   }
   //Delete current test.txt file if present
   if (sd.exists("test.txt")) {
@@ -202,7 +202,7 @@ void setup() {
 
   /*  Set-up complete */
   if (serialEcho) {
-    Serial.println("set-up complete.");
+    Serial.println("set up complete.");
   }
 }
 
@@ -212,12 +212,6 @@ void setup() {
 ////////////////////////////////////////////////
 void loop() {
   DateTime curr = rtc.now();
-  
-  //*******************************************
-  //We use millis() to get milliseconds since program started.
-  //This allows for more accurate time counting, but for coding purposes, program must be ran at exactly the same time each day
-  //*******************************************************************************
-  
   unsigned long milli = millis();
   int milliInt = (int)milli;
 
@@ -262,7 +256,7 @@ Serial.print(milli);
 Serial.print(" ");
 Serial.println("  Begin");
   while (milli < 61000) {
-    if (getpH() > 6.99 && getpH() < 7.6) {
+    if (getpH() > 6.99 && getpH() < 7.6 && getDOmgL() > 3.6 && getDOmgl()<7.2) {
       digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, LOW);
@@ -329,11 +323,11 @@ Serial.println("  Begin");
       Serial.println(" ");
     }
     else if (getpH() < 7) {
-      digitalWrite(N2valve, HIGH);
+      digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, HIGH);
       delay(100);
-      digitalWrite(N2valve, HIGH);
+      digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, LOW);
       delay(800);
@@ -365,6 +359,7 @@ Serial.println("  Begin");
     }
   }
   Serial.println();
+  myFile.close();
   while ((milli) > 60000 && (milli) < 121000) {
     if (getpH() > 7.59 && getpH() < 8.29) {
       digitalWrite(N2valve, LOW);
@@ -433,13 +428,13 @@ Serial.println("  Begin");
       Serial.println(" ");
     }
     else if (getpH() < 7.6) {
-      digitalWrite(N2valve, HIGH);
+      digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, HIGH);
       delay(100);
-      digitalWrite(N2valve, HIGH);
+      digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
+      digitalWrite(O2valve, HIGH);
       delay(800);
       milli = millis();
       milliInt = (int)milli;
@@ -469,6 +464,7 @@ Serial.println("  Begin");
     }
   }
   Serial.println();
+    myFile.close();
   while ((milli) > 120000 && (milli) < 181000) {
     if (getpH() > 8.29 && getpH() < 8.9) {
       digitalWrite(N2valve, LOW);
@@ -537,11 +533,11 @@ Serial.println("  Begin");
       Serial.println(" ");
     }
     else if (getpH() < 8.3) {
-      digitalWrite(N2valve, HIGH);
+      digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, HIGH);
       delay(100);
-      digitalWrite(N2valve, HIGH);
+      digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, LOW);
       delay(800);
@@ -573,6 +569,7 @@ Serial.println("  Begin");
     }
   }
   Serial.println();
+    myFile.close();
   while ((milli) > 180000 && (milli) < 241000) {
     if (getpH() > 7.59 && getpH() < 8.29) {
       digitalWrite(N2valve, LOW);
@@ -641,13 +638,13 @@ Serial.println("  Begin");
       Serial.println(" ");
     }
     else if (getpH() < 7.6) {
-      digitalWrite(N2valve, HIGH);
+      digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, HIGH);
       delay(100);
-      digitalWrite(N2valve, HIGH);
+      digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
+      digitalWrite(O2valve, HIGH);
       delay(800);
       milli = millis();
       milliInt = (int)milli;
@@ -677,7 +674,7 @@ Serial.println("  Begin");
     }
   }
 
-
+  myFile.close();
   while ((milli) > 240000 && (milli) < 301000) {
     if (getpH() > 6.99 && getpH() < 7.6) {
       digitalWrite(N2valve, LOW);
@@ -746,13 +743,13 @@ Serial.println("  Begin");
       Serial.println(" ");
     }
     else if (getpH() < 7) {
-      digitalWrite(N2valve, HIGH);
+      digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, HIGH);
       delay(100);
-      digitalWrite(N2valve, HIGH);
+      digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
+      digitalWrite(O2valve, HIGH);
       delay(800);
       milli = millis();
       milliInt = (int)milli;
@@ -782,6 +779,7 @@ Serial.println("  Begin");
     }
   }
   Serial.println();
+    myFile.close();
   while ((milli) > 300000 && (milli) < 361000) {
     if (getpH() > 7.59 && getpH() < 8.29) {
       digitalWrite(N2valve, LOW);
@@ -850,11 +848,11 @@ Serial.println("  Begin");
       Serial.println(" ");
     }
     else if (getpH() < 7.6) {
-      digitalWrite(N2valve, HIGH);
+      digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, HIGH);
       delay(100);
-      digitalWrite(N2valve, HIGH);
+      digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, LOW);
       delay(800);
@@ -886,6 +884,7 @@ Serial.println("  Begin");
     }
   }
   Serial.println();
+    myFile.close();
   while ((milli) > 360000 && (milli) < 421000) {
     if (getpH() > 8.29 && getpH() < 8.9) {
       digitalWrite(N2valve, LOW);
@@ -954,13 +953,13 @@ Serial.println("  Begin");
       Serial.println(" ");
     }
     else if (getpH() < 8.3) {
-      digitalWrite(N2valve, HIGH);
+      digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, HIGH);
       delay(100);
-      digitalWrite(N2valve, HIGH);
+      digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
+      digitalWrite(O2valve, HIGH);
       delay(800);
       milli = millis();
       milliInt = (int)milli;
@@ -990,6 +989,7 @@ Serial.println("  Begin");
     }
   }
   Serial.println();
+    myFile.close();
   while ((milli) > 420000 && (milli) < 481000) {
     if (getpH() > 7.59 && getpH() < 8.29) {
       digitalWrite(N2valve, LOW);
@@ -1058,13 +1058,13 @@ Serial.println("  Begin");
       Serial.println(" ");
     }
     else if (getpH() < 7.6) {
-      digitalWrite(N2valve, HIGH);
+      digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, HIGH);
       delay(100);
-      digitalWrite(N2valve, HIGH);
+      digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
+      digitalWrite(O2valve, HIGH);
       delay(800);
       milli = millis();
       milliInt = (int)milli;
@@ -1093,7 +1093,7 @@ Serial.println("  Begin");
       Serial.println(" ");
     }
   }
-  
+  myFile.close();
     /*digitalWrite(N2valve, LOW);
     digitalWrite(CO2valve, HIGH);
     digitalWrite(O2valve, LOW);
@@ -1267,7 +1267,9 @@ static void printTempToSerial (double temp) {
 */
 static void printpHToSD (double pH) {
   myFile.print('\t');
+  myFile.print("*");
   myFile.print(pH);
+  myFile.print("*");
 }
 /*
  * Prints pH to Serial.
@@ -1306,7 +1308,9 @@ static void printDOuMolToSerial (double measure) {
 */
 static void printDOmgLToSD (double measure) {
   myFile.print("\t");
+  myFile.print("-");
   myFile.println(measure);
+  myFile.print("-");
 }
 /*
  * Prints DO to Serial in units of mg/L.
