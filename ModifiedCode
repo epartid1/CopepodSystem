@@ -108,6 +108,7 @@ void setup() {
 void loop() {
   DateTime curr = rtc.now();
   unsigned long milli = millis();
+  unsigned long milli2 = millis();
   int milliInt = (int)milli;
   
   if (serialEcho) {
@@ -143,7 +144,7 @@ Serial.print(" ");
 Serial.print(milli);
 Serial.print(" ");
 Serial.println("  Begin");
-  while (milli < 120001) {
+  while ((milli - milli2) < 315001) {
     if (getpH() > 6.99 && getpH() < 7.6 && getDOmgL() > 3.59 && getDOmgL() < 6.30) {
       digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, LOW);
@@ -467,7 +468,7 @@ Serial.println("  Begin");
   Serial.println();
   //myFile.close();
 
-  while (milli > 120000 && milli < 240001) {
+  while ((milli - milli2) > 315000 && (milli - milli2) < 630001) {
     if (getpH() > 7.59 && getpH() < 8.30 && getDOmgL() > 6.29 && getDOmgL() < 11.70) {
       digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, LOW);
@@ -790,7 +791,7 @@ Serial.println("  Begin");
   }
   Serial.println();
   //myFile.close();
-  while (milli > 240000 && milli < 360001) {
+  while ((milli - milli2) > 630000 && (milli -milli2) < 945001) {
     if (getpH() > 8.29 && getpH() < 8.90 && getDOmgL() > 11.69 && getDOmgL() < 14.40) {
       digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, LOW);
@@ -1113,7 +1114,7 @@ Serial.println("  Begin");
   }
   Serial.println();
   //myFile.close();
-  while (milli > 360000 && milli < 480001) {
+  while ((milli - milli2) > 945000 && (milli - milli2) < 1260001) {
     if (getpH() > 7.59 && getpH() < 8.30 && getDOmgL() > 6.29 && getDOmgL() < 11.70) {
       digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, LOW);
@@ -1434,8 +1435,9 @@ Serial.println("  Begin");
       Serial.println(" ");
     }
   }
-  Serial.println();
+  milli2 = millis();
   myFile.close();
+  myFile.open("test.txt", O_RDWR | O_CREAT | O_AT_END);
   /*while (milli > 240000 && milli < 300001) {
     if (getpH() > 6.99 && getpH() < 7.6 && getDOmgL() > 3.59 && getDOmgL() < 6.30) {
       digitalWrite(N2valve, LOW);
