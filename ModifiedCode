@@ -140,12 +140,9 @@ void loop() {
     printDOmgLToSD(doMeas);
   }
 
-Serial.print(" ");
-Serial.print(milli);
-Serial.print(" ");
-Serial.println("  Begin");
-  while ((milli - milli2) < 315001) {
-    if (getpH() > 6.99 && getpH() < 7.6 && getDOmgL() > 3.59 && getDOmgL() < 6.30) {
+Serial.println("    Begin");
+  while ((milli - milli2) < 21600000) {
+    if (getpH() > 6.99 && getpH() < 7.2 && getDOmgL() > 3.59 && getDOmgL() < 4.0) {
       digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, LOW);
@@ -176,15 +173,15 @@ Serial.println("  Begin");
       Serial.print(milli);
       Serial.println(" ");
     }
-    else if (getpH() > 6.99 && getpH() < 7.6 && getDOmgL() > 6.29) {
+    else if (getpH() > 6.99 && getpH() < 7.2 && getDOmgL() > 3.99) {
+      digitalWrite(N2valve, HIGH);
+      digitalWrite(CO2valve, HIGH);
+      digitalWrite(O2valve, LOW);
+      delay(100);
       digitalWrite(N2valve, HIGH);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, LOW);
-      delay(450);
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(450);
+      delay(800);
       milli = millis();
       milliInt = (int)milli;
       DateTime curr = rtc.now();
@@ -211,7 +208,7 @@ Serial.println("  Begin");
       Serial.print(milli);
       Serial.println(" ");
     }
-    else if (getpH() > 6.99 && getpH() < 7.6 && getDOmgL() < 3.60) {
+    else if (getpH() > 6.99 && getpH() < 7.2 && getDOmgL() < 3.60) {
       digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, HIGH);
@@ -246,11 +243,11 @@ Serial.println("  Begin");
       Serial.print(milli);
       Serial.println(" ");
     }
-    else if (getpH() > 7.59 && getDOmgL() > 6.29) {
+    else if (getpH() > 7.19 && getDOmgL() > 3.99) {
       digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, HIGH);
       digitalWrite(O2valve, LOW);
-      delay(150);
+      delay(100);
       digitalWrite(N2valve, HIGH);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, LOW);
@@ -258,7 +255,7 @@ Serial.println("  Begin");
       digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, LOW);
-      delay(250);
+      delay(300);
       milli = millis();
       milliInt = (int)milli;
       DateTime curr = rtc.now();
@@ -285,11 +282,11 @@ Serial.println("  Begin");
       Serial.print(milli);
       Serial.println(" ");
     }
-    else if (getpH() > 7.59 && getDOmgL() < 3.60) {
+    else if (getpH() > 7.19 && getDOmgL() < 3.60) {
       digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, HIGH);
       digitalWrite(O2valve, LOW);
-      delay(150);
+      delay(100);
       digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, HIGH);
@@ -297,7 +294,7 @@ Serial.println("  Begin");
       digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, LOW);
-      delay(350);
+      delay(400);
       milli = millis();
       milliInt = (int)milli;
       DateTime curr = rtc.now();
@@ -324,7 +321,7 @@ Serial.println("  Begin");
       Serial.print(milli);
       Serial.println(" ");
     }
-    else if (getpH() > 7.59) {
+    else if (getpH() > 7.19) {
       digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, HIGH);
       digitalWrite(O2valve, LOW);
@@ -394,7 +391,7 @@ Serial.println("  Begin");
       Serial.print(milli);
       Serial.println(" ");
     }
-    else if (getpH() < 7 && getDOmgL() > 6.29) {
+    else if (getpH() < 7 && getDOmgL() > 3.99) {
       digitalWrite(N2valve, HIGH);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, LOW);
@@ -432,7 +429,7 @@ Serial.println("  Begin");
     else if (getpH() < 7) {
       digitalWrite(N2valve, HIGH);
       digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, HIGH);
+      digitalWrite(O2valve, LOW);
       delay(200);
       digitalWrite(N2valve, HIGH);
       digitalWrite(CO2valve, LOW);
@@ -466,10 +463,10 @@ Serial.println("  Begin");
     }
   }
   Serial.println();
-  //myFile.close();
-
-  while ((milli - milli2) > 315000 && (milli - milli2) < 630001) {
-    if (getpH() > 7.59 && getpH() < 8.30 && getDOmgL() > 6.29 && getDOmgL() < 11.70) {
+  myFile.close();
+  myFile.open("test.txt", O_RDWR | O_CREAT | O_AT_END);
+  while ((milli - milli2) > 21599999 && (milli - milli2) < 43200000) {
+    if (getpH() > 7.89 && getpH() < 8.10 && getDOmgL() > 8.29 && getDOmgL() < 8.60) {
       digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, LOW);
@@ -500,15 +497,15 @@ Serial.println("  Begin");
       Serial.print(milli);
       Serial.println(" ");
     }
-    else if (getpH() > 7.59 && getpH() < 8.30 && getDOmgL() > 11.69) {
+    else if (getpH() > 7.89 && getpH() < 8.10 && getDOmgL() > 8.59) {
+      digitalWrite(N2valve, HIGH);
+      digitalWrite(CO2valve, HIGH);
+      digitalWrite(O2valve, LOW);
+      delay(100);
       digitalWrite(N2valve, HIGH);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, LOW);
-      delay(450);
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(450);
+      delay(800);
       milli = millis();
       milliInt = (int)milli;
       DateTime curr = rtc.now();
@@ -535,7 +532,7 @@ Serial.println("  Begin");
       Serial.print(milli);
       Serial.println(" ");
     }
-    else if (getpH() > 7.59 && getpH() < 8.30 && getDOmgL() < 6.30) {
+    else if (getpH() > 7.89 && getpH() < 8.10 && getDOmgL() < 8.30) {
       digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, HIGH);
@@ -570,11 +567,11 @@ Serial.println("  Begin");
       Serial.print(milli);
       Serial.println(" ");
     }
-    else if (getpH() > 8.29 && getDOmgL() > 11.69) {
+    else if (getpH() > 8.09 && getDOmgL() > 8.59) {
       digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, HIGH);
       digitalWrite(O2valve, LOW);
-      delay(150);
+      delay(100);
       digitalWrite(N2valve, HIGH);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, LOW);
@@ -582,7 +579,7 @@ Serial.println("  Begin");
       digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, LOW);
-      delay(250);
+      delay(300);
       milli = millis();
       milliInt = (int)milli;
       DateTime curr = rtc.now();
@@ -609,11 +606,11 @@ Serial.println("  Begin");
       Serial.print(milli);
       Serial.println(" ");
     }
-    else if (getpH() > 8.29 && getDOmgL() < 6.30) {
+    else if (getpH() > 8.09 && getDOmgL() < 8.30) {
       digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, HIGH);
       digitalWrite(O2valve, LOW);
-      delay(150);
+      delay(100);
       digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, HIGH);
@@ -621,7 +618,7 @@ Serial.println("  Begin");
       digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, LOW);
-      delay(350);
+      delay(400);
       milli = millis();
       milliInt = (int)milli;
       DateTime curr = rtc.now();
@@ -648,7 +645,7 @@ Serial.println("  Begin");
       Serial.print(milli);
       Serial.println(" ");
     }
-    else if (getpH() > 8.29) {
+    else if (getpH() > 8.09) {
       digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, HIGH);
       digitalWrite(O2valve, LOW);
@@ -683,7 +680,7 @@ Serial.println("  Begin");
       Serial.print(milli);
       Serial.println(" ");
     }
-    else if (getpH() < 7.60 && getDOmgL() < 6.30) {
+    else if (getpH() < 7.90 && getDOmgL() < 8.30) {
       digitalWrite(N2valve, HIGH);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, HIGH);
@@ -718,7 +715,7 @@ Serial.println("  Begin");
       Serial.print(milli);
       Serial.println(" ");
     }
-    else if (getpH() < 7.60 && getDOmgL() > 11.69) {
+    else if (getpH() < 7.90 && getDOmgL() > 8.59) {
       digitalWrite(N2valve, HIGH);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, LOW);
@@ -753,10 +750,10 @@ Serial.println("  Begin");
       Serial.print(milli);
       Serial.println(" ");
     }
-    else if (getpH() < 7.60) {
+    else if (getpH() < 7.90) {
       digitalWrite(N2valve, HIGH);
       digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, HIGH);
+      digitalWrite(O2valve, LOW);
       delay(200);
       digitalWrite(N2valve, HIGH);
       digitalWrite(CO2valve, LOW);
@@ -790,9 +787,10 @@ Serial.println("  Begin");
     }
   }
   Serial.println();
-  //myFile.close();
-  while ((milli - milli2) > 630000 && (milli -milli2) < 945001) {
-    if (getpH() > 8.29 && getpH() < 8.90 && getDOmgL() > 11.69 && getDOmgL() < 14.40) {
+  myFile.close();
+  myFile.open("test.txt", O_RDWR | O_CREAT | O_AT_END);
+  while ((milli - milli2) > 43199999 && (milli -milli2) < 64800000) {
+    if (getpH() > 8.79 && getpH() < 9.00 && getDOmgL() > 13.89 && getDOmgL() < 14.20) {
       digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, LOW);
@@ -823,15 +821,15 @@ Serial.println("  Begin");
       Serial.print(milli);
       Serial.println(" ");
     }
-    else if (getpH() > 8.29 && getpH() < 8.90 && getDOmgL() > 14.39) {
+    else if (getpH() > 8.79 && getpH() < 9.00 && getDOmgL() > 14.19) {
+      digitalWrite(N2valve, HIGH);
+      digitalWrite(CO2valve, HIGH);
+      digitalWrite(O2valve, LOW);
+      delay(100);
       digitalWrite(N2valve, HIGH);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, LOW);
-      delay(450);
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(450);
+      delay(800);
       milli = millis();
       milliInt = (int)milli;
       DateTime curr = rtc.now();
@@ -858,7 +856,7 @@ Serial.println("  Begin");
       Serial.print(milli);
       Serial.println(" ");
     }
-    else if (getpH() > 8.29 && getpH() < 8.90 && getDOmgL() < 11.70) {
+    else if (getpH() > 8.79 && getpH() < 9.00 && getDOmgL() < 13.90) {
       digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, HIGH);
@@ -893,11 +891,11 @@ Serial.println("  Begin");
       Serial.print(milli);
       Serial.println(" ");
     }
-    else if (getpH() > 8.89 && getDOmgL() > 14.39) {
+    else if (getpH() > 8.99 && getDOmgL() > 14.19) {
       digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, HIGH);
       digitalWrite(O2valve, LOW);
-      delay(150);
+      delay(100);
       digitalWrite(N2valve, HIGH);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, LOW);
@@ -905,7 +903,7 @@ Serial.println("  Begin");
       digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, LOW);
-      delay(250);
+      delay(300);
       milli = millis();
       milliInt = (int)milli;
       DateTime curr = rtc.now();
@@ -932,11 +930,11 @@ Serial.println("  Begin");
       Serial.print(milli);
       Serial.println(" ");
     }
-    else if (getpH() > 8.89 && getDOmgL() < 11.70) {
+    else if (getpH() > 8.99 && getDOmgL() < 13.90) {
       digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, HIGH);
       digitalWrite(O2valve, LOW);
-      delay(150);
+      delay(100);
       digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, HIGH);
@@ -944,7 +942,7 @@ Serial.println("  Begin");
       digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, LOW);
-      delay(350);
+      delay(400);
       milli = millis();
       milliInt = (int)milli;
       DateTime curr = rtc.now();
@@ -971,7 +969,7 @@ Serial.println("  Begin");
       Serial.print(milli);
       Serial.println(" ");
     }
-    else if (getpH() > 8.89) {
+    else if (getpH() > 8.99) {
       digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, HIGH);
       digitalWrite(O2valve, LOW);
@@ -1006,7 +1004,7 @@ Serial.println("  Begin");
       Serial.print(milli);
       Serial.println(" ");
     }
-    else if (getpH() < 8.30 && getDOmgL() < 11.70) {
+    else if (getpH() < 8.80 && getDOmgL() < 13.90) {
       digitalWrite(N2valve, HIGH);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, HIGH);
@@ -1041,7 +1039,7 @@ Serial.println("  Begin");
       Serial.print(milli);
       Serial.println(" ");
     }
-    else if (getpH() < 8.30 && getDOmgL() > 14.39) {
+    else if (getpH() < 8.80 && getDOmgL() > 14.19) {
       digitalWrite(N2valve, HIGH);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, LOW);
@@ -1076,10 +1074,10 @@ Serial.println("  Begin");
       Serial.print(milli);
       Serial.println(" ");
     }
-    else if (getpH() < 8.30) {
+    else if (getpH() < 8.80) {
       digitalWrite(N2valve, HIGH);
       digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, HIGH);
+      digitalWrite(O2valve, LOW);
       delay(200);
       digitalWrite(N2valve, HIGH);
       digitalWrite(CO2valve, LOW);
@@ -1113,9 +1111,10 @@ Serial.println("  Begin");
     }
   }
   Serial.println();
-  //myFile.close();
-  while ((milli - milli2) > 945000 && (milli - milli2) < 1260001) {
-    if (getpH() > 7.59 && getpH() < 8.30 && getDOmgL() > 6.29 && getDOmgL() < 11.70) {
+  myFile.close();
+  myFile.open("test.txt", O_RDWR | O_CREAT | O_AT_END);
+  while ((milli - milli2) > 64799999 && (milli - milli2) < 86400000) {
+    if (getpH() > 7.89 && getpH() < 8.10 && getDOmgL() > 8.29 && getDOmgL() < 8.60) {
       digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, LOW);
@@ -1146,15 +1145,15 @@ Serial.println("  Begin");
       Serial.print(milli);
       Serial.println(" ");
     }
-    else if (getpH() > 7.59 && getpH() < 8.30 && getDOmgL() > 11.69) {
+    else if (getpH() > 7.89 && getpH() < 8.10 && getDOmgL() > 8.59) {
+      digitalWrite(N2valve, HIGH);
+      digitalWrite(CO2valve, HIGH);
+      digitalWrite(O2valve, LOW);
+      delay(100);
       digitalWrite(N2valve, HIGH);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, LOW);
-      delay(450);
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(450);
+      delay(800);
       milli = millis();
       milliInt = (int)milli;
       DateTime curr = rtc.now();
@@ -1181,7 +1180,7 @@ Serial.println("  Begin");
       Serial.print(milli);
       Serial.println(" ");
     }
-    else if (getpH() > 7.59 && getpH() < 8.30 && getDOmgL() < 6.30) {
+    else if (getpH() > 7.89 && getpH() < 8.10 && getDOmgL() < 8.30) {
       digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, HIGH);
@@ -1216,11 +1215,11 @@ Serial.println("  Begin");
       Serial.print(milli);
       Serial.println(" ");
     }
-    else if (getpH() > 8.29 && getDOmgL() > 11.69) {
+    else if (getpH() > 8.09 && getDOmgL() > 8.59) {
       digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, HIGH);
       digitalWrite(O2valve, LOW);
-      delay(150);
+      delay(100);
       digitalWrite(N2valve, HIGH);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, LOW);
@@ -1228,7 +1227,7 @@ Serial.println("  Begin");
       digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, LOW);
-      delay(250);
+      delay(300);
       milli = millis();
       milliInt = (int)milli;
       DateTime curr = rtc.now();
@@ -1255,11 +1254,11 @@ Serial.println("  Begin");
       Serial.print(milli);
       Serial.println(" ");
     }
-    else if (getpH() > 8.29 && getDOmgL() < 6.30) {
+    else if (getpH() > 8.09 && getDOmgL() < 8.30) {
       digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, HIGH);
       digitalWrite(O2valve, LOW);
-      delay(150);
+      delay(100);
       digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, HIGH);
@@ -1267,7 +1266,7 @@ Serial.println("  Begin");
       digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, LOW);
-      delay(350);
+      delay(400);
       milli = millis();
       milliInt = (int)milli;
       DateTime curr = rtc.now();
@@ -1294,7 +1293,7 @@ Serial.println("  Begin");
       Serial.print(milli);
       Serial.println(" ");
     }
-    else if (getpH() > 8.29) {
+    else if (getpH() > 8.09) {
       digitalWrite(N2valve, LOW);
       digitalWrite(CO2valve, HIGH);
       digitalWrite(O2valve, LOW);
@@ -1329,7 +1328,7 @@ Serial.println("  Begin");
       Serial.print(milli);
       Serial.println(" ");
     }
-    else if (getpH() < 7.60 && getDOmgL() < 6.30) {
+    else if (getpH() < 7.90 && getDOmgL() < 8.30) {
       digitalWrite(N2valve, HIGH);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, HIGH);
@@ -1364,7 +1363,7 @@ Serial.println("  Begin");
       Serial.print(milli);
       Serial.println(" ");
     }
-    else if (getpH() < 7.60 && getDOmgL() > 11.69) {
+    else if (getpH() < 7.90 && getDOmgL() > 8.59) {
       digitalWrite(N2valve, HIGH);
       digitalWrite(CO2valve, LOW);
       digitalWrite(O2valve, LOW);
@@ -1399,10 +1398,10 @@ Serial.println("  Begin");
       Serial.print(milli);
       Serial.println(" ");
     }
-    else if (getpH() < 7.60) {
+    else if (getpH() < 7.90) {
       digitalWrite(N2valve, HIGH);
       digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, HIGH);
+      digitalWrite(O2valve, LOW);
       delay(200);
       digitalWrite(N2valve, HIGH);
       digitalWrite(CO2valve, LOW);
@@ -1438,1299 +1437,7 @@ Serial.println("  Begin");
   milli2 = millis();
   myFile.close();
   myFile.open("test.txt", O_RDWR | O_CREAT | O_AT_END);
-  /*while (milli > 240000 && milli < 300001) {
-    if (getpH() > 6.99 && getpH() < 7.6 && getDOmgL() > 3.59 && getDOmgL() < 6.30) {
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(900);
-      milli = millis();
-      milliInt = (int)milli;
-      DateTime curr = rtc.now();
-      double c = thermocouple.readCelsius();
-      double phMeas = getpH();
-      double doMeas = getDOmgL();
-      if (serialEcho) {
-        printTimeToSerial (curr);
-        printTimeToSD (curr);
-      }
-      if (serialEcho) {
-        printTempToSerial (c);
-        printTempToSD(c);
-      }
-      if(serialEcho) {
-        printpHToSerial(phMeas);
-        printpHToSD(phMeas);
-      }
-      if (serialEcho) {
-        printDOmgLToSerial(doMeas);
-        printDOmgLToSD(doMeas);
-      }
-      Serial.print(" ");
-      Serial.print(milli);
-      Serial.println(" ");
-    }
-    else if (getpH() > 6.99 && getpH() < 7.6 && getDOmgL() > 6.29) {
-      digitalWrite(N2valve, HIGH);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(450);
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(450);
-      milli = millis();
-      milliInt = (int)milli;
-      DateTime curr = rtc.now();
-      double c = thermocouple.readCelsius();
-      double phMeas = getpH();
-      double doMeas = getDOmgL();
-      if (serialEcho) {
-        printTimeToSerial (curr);
-        printTimeToSD (curr);
-      }
-      if (serialEcho) {
-        printTempToSerial (c);
-        printTempToSD(c);
-      }
-      if(serialEcho) {
-        printpHToSerial(phMeas);
-        printpHToSD(phMeas);
-      }
-      if (serialEcho) {
-        printDOmgLToSerial(doMeas);
-        printDOmgLToSD(doMeas);
-      }
-      Serial.print(" ");
-      Serial.print(milli);
-      Serial.println(" ");
-    }
-    else if (getpH() > 6.99 && getpH() < 7.6 && getDOmgL() < 3.60) {
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, HIGH);
-      delay(250);
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(650);
-      milli = millis();
-      milliInt = (int)milli;
-      DateTime curr = rtc.now();
-      double c = thermocouple.readCelsius();
-      double phMeas = getpH();
-      double doMeas = getDOmgL();
-      if (serialEcho) {
-        printTimeToSerial (curr);
-        printTimeToSD (curr);
-      }
-      if (serialEcho) {
-        printTempToSerial (c);
-        printTempToSD(c);
-      }
-      if(serialEcho) {
-        printpHToSerial(phMeas);
-        printpHToSD(phMeas);
-      }
-      if (serialEcho) {
-        printDOmgLToSerial(doMeas);
-        printDOmgLToSD(doMeas);
-      }
-      Serial.print(" ");
-      Serial.print(milli);
-      Serial.println(" ");
-    }
-    else if (getpH() > 7.59 && getDOmgL() > 6.29) {
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, HIGH);
-      digitalWrite(O2valve, LOW);
-      delay(150);
-      digitalWrite(N2valve, HIGH);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(500);
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(250);
-      milli = millis();
-      milliInt = (int)milli;
-      DateTime curr = rtc.now();
-      if (serialEcho) {
-        printTimeToSerial (curr);
-        printTimeToSD (curr);
-      }
-      double c = thermocouple.readCelsius();
-      if (serialEcho) {
-        printTempToSerial (c);
-        printTempToSD(c);
-      }
-      double phMeas = getpH();
-      if(serialEcho) {
-        printpHToSerial(phMeas);
-        printpHToSD(phMeas);
-      }
-      double doMeas = getDOmgL();
-      if (serialEcho) {
-        printDOmgLToSerial(doMeas);
-        printDOmgLToSD(doMeas);
-      }
-      Serial.print(" ");
-      Serial.print(milli);
-      Serial.println(" ");
-    }
-    else if (getpH() > 7.59 && getDOmgL() < 3.60) {
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, HIGH);
-      digitalWrite(O2valve, LOW);
-      delay(150);
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, HIGH);
-      delay(400);
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(350);
-      milli = millis();
-      milliInt = (int)milli;
-      DateTime curr = rtc.now();
-      if (serialEcho) {
-        printTimeToSerial (curr);
-        printTimeToSD (curr);
-      }
-      double c = thermocouple.readCelsius();
-      if (serialEcho) {
-        printTempToSerial (c);
-        printTempToSD(c);
-      }
-      double phMeas = getpH();
-      if(serialEcho) {
-        printpHToSerial(phMeas);
-        printpHToSD(phMeas);
-      }
-      double doMeas = getDOmgL();
-      if (serialEcho) {
-        printDOmgLToSerial(doMeas);
-        printDOmgLToSD(doMeas);
-      }
-      Serial.print(" ");
-      Serial.print(milli);
-      Serial.println(" ");
-    }
-    else if (getpH() > 7.59) {
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, HIGH);
-      digitalWrite(O2valve, LOW);
-      delay(100);
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(800);
-      milli = millis();
-      milliInt = (int)milli;
-      DateTime curr = rtc.now();
-      if (serialEcho) {
-        printTimeToSerial (curr);
-        printTimeToSD (curr);
-      }
-      double c = thermocouple.readCelsius();
-      if (serialEcho) {
-        printTempToSerial (c);
-        printTempToSD(c);
-      }
-      double phMeas = getpH();
-      if(serialEcho) {
-        printpHToSerial(phMeas);
-        printpHToSD(phMeas);
-      }
-      double doMeas = getDOmgL();
-      if (serialEcho) {
-        printDOmgLToSerial(doMeas);
-        printDOmgLToSD(doMeas);
-      }
-      Serial.print(" ");
-      Serial.print(milli);
-      Serial.println(" ");
-    }
-    else if (getpH() < 7 && getDOmgL() < 3.60) {
-      digitalWrite(N2valve, HIGH);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, HIGH);
-      delay(450);
-      digitalWrite(N2valve, HIGH);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(450);
-      milli = millis();
-      milliInt = (int)milli;
-      DateTime curr = rtc.now();
-      if (serialEcho) {
-        printTimeToSerial (curr);
-        printTimeToSD (curr);
-      }
-      double c = thermocouple.readCelsius();
-      if (serialEcho) {
-        printTempToSerial (c);
-        printTempToSD(c);
-      }
-      double phMeas = getpH();
-      if(serialEcho) {
-        printpHToSerial(phMeas);
-        printpHToSD(phMeas);
-      }
-      double doMeas = getDOmgL();
-      if (serialEcho) {
-        printDOmgLToSerial(doMeas);
-        printDOmgLToSD(doMeas);
-      }
-      Serial.print(" ");
-      Serial.print(milli);
-      Serial.println(" ");
-    }
-    else if (getpH() < 7 && getDOmgL() > 6.29) {
-      digitalWrite(N2valve, HIGH);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(450);
-      digitalWrite(N2valve, HIGH);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(450);
-      milli = millis();
-      milliInt = (int)milli;
-      DateTime curr = rtc.now();
-      if (serialEcho) {
-        printTimeToSerial (curr);
-        printTimeToSD (curr);
-      }
-      double c = thermocouple.readCelsius();
-      if (serialEcho) {
-        printTempToSerial (c);
-        printTempToSD(c);
-      }
-      double phMeas = getpH();
-      if(serialEcho) {
-        printpHToSerial(phMeas);
-        printpHToSD(phMeas);
-      }
-      double doMeas = getDOmgL();
-      if (serialEcho) {
-        printDOmgLToSerial(doMeas);
-        printDOmgLToSD(doMeas);
-      }
-      Serial.print(" ");
-      Serial.print(milli);
-      Serial.println(" ");
-    }
-    else if (getpH() < 7) {
-      digitalWrite(N2valve, HIGH);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, HIGH);
-      delay(200);
-      digitalWrite(N2valve, HIGH);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(600);
-      milli = millis();
-      milliInt = (int)milli;
-      DateTime curr = rtc.now();
-      if (serialEcho) {
-        printTimeToSerial (curr);
-        printTimeToSD (curr);
-      }
-      double c = thermocouple.readCelsius();
-      if (serialEcho) {
-        printTempToSerial (c);
-        printTempToSD(c);
-      }
-      double phMeas = getpH();
-      if(serialEcho) {
-        printpHToSerial(phMeas);
-        printpHToSD(phMeas);
-      }
-      double doMeas = getDOmgL();
-      if (serialEcho) {
-        printDOmgLToSerial(doMeas);
-        printDOmgLToSD(doMeas);
-      }
-      Serial.print(" ");
-      Serial.print(milli);
-      Serial.println(" ");
-    }
-  }
-  Serial.println();
-  myFile.close();
-  while (milli > 300000 && milli < 360001) {
-    if (getpH() > 7.59 && getpH() < 8.30 && getDOmgL() > 6.29 && getDOmgL() < 11.70) {
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(900);
-      milli = millis();
-      milliInt = (int)milli;
-      DateTime curr = rtc.now();
-      double c = thermocouple.readCelsius();
-      double phMeas = getpH();
-      double doMeas = getDOmgL();
-      if (serialEcho) {
-        printTimeToSerial (curr);
-        printTimeToSD (curr);
-      }
-      if (serialEcho) {
-        printTempToSerial (c);
-        printTempToSD(c);
-      }
-      if(serialEcho) {
-        printpHToSerial(phMeas);
-        printpHToSD(phMeas);
-      }
-      if (serialEcho) {
-        printDOmgLToSerial(doMeas);
-        printDOmgLToSD(doMeas);
-      }
-      Serial.print(" ");
-      Serial.print(milli);
-      Serial.println(" ");
-    }
-    else if (getpH() > 7.59 && getpH() < 8.30 && getDOmgL() > 11.69) {
-      digitalWrite(N2valve, HIGH);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(450);
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(450);
-      milli = millis();
-      milliInt = (int)milli;
-      DateTime curr = rtc.now();
-      double c = thermocouple.readCelsius();
-      double phMeas = getpH();
-      double doMeas = getDOmgL();
-      if (serialEcho) {
-        printTimeToSerial (curr);
-        printTimeToSD (curr);
-      }
-      if (serialEcho) {
-        printTempToSerial (c);
-        printTempToSD(c);
-      }
-      if(serialEcho) {
-        printpHToSerial(phMeas);
-        printpHToSD(phMeas);
-      }
-      if (serialEcho) {
-        printDOmgLToSerial(doMeas);
-        printDOmgLToSD(doMeas);
-      }
-      Serial.print(" ");
-      Serial.print(milli);
-      Serial.println(" ");
-    }
-    else if (getpH() > 7.59 && getpH() < 8.30 && getDOmgL() < 6.30) {
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, HIGH);
-      delay(250);
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(650);
-      milli = millis();
-      milliInt = (int)milli;
-      DateTime curr = rtc.now();
-      double c = thermocouple.readCelsius();
-      double phMeas = getpH();
-      double doMeas = getDOmgL();
-      if (serialEcho) {
-        printTimeToSerial (curr);
-        printTimeToSD (curr);
-      }
-      if (serialEcho) {
-        printTempToSerial (c);
-        printTempToSD(c);
-      }
-      if(serialEcho) {
-        printpHToSerial(phMeas);
-        printpHToSD(phMeas);
-      }
-      if (serialEcho) {
-        printDOmgLToSerial(doMeas);
-        printDOmgLToSD(doMeas);
-      }
-      Serial.print(" ");
-      Serial.print(milli);
-      Serial.println(" ");
-    }
-    else if (getpH() > 8.29 && getDOmgL() > 11.69) {
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, HIGH);
-      digitalWrite(O2valve, LOW);
-      delay(150);
-      digitalWrite(N2valve, HIGH);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(500);
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(250);
-      milli = millis();
-      milliInt = (int)milli;
-      DateTime curr = rtc.now();
-      if (serialEcho) {
-        printTimeToSerial (curr);
-        printTimeToSD (curr);
-      }
-      double c = thermocouple.readCelsius();
-      if (serialEcho) {
-        printTempToSerial (c);
-        printTempToSD(c);
-      }
-      double phMeas = getpH();
-      if(serialEcho) {
-        printpHToSerial(phMeas);
-        printpHToSD(phMeas);
-      }
-      double doMeas = getDOmgL();
-      if (serialEcho) {
-        printDOmgLToSerial(doMeas);
-        printDOmgLToSD(doMeas);
-      }
-      Serial.print(" ");
-      Serial.print(milli);
-      Serial.println(" ");
-    }
-    else if (getpH() > 8.29 && getDOmgL() < 6.30) {
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, HIGH);
-      digitalWrite(O2valve, LOW);
-      delay(150);
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, HIGH);
-      delay(400);
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(350);
-      milli = millis();
-      milliInt = (int)milli;
-      DateTime curr = rtc.now();
-      if (serialEcho) {
-        printTimeToSerial (curr);
-        printTimeToSD (curr);
-      }
-      double c = thermocouple.readCelsius();
-      if (serialEcho) {
-        printTempToSerial (c);
-        printTempToSD(c);
-      }
-      double phMeas = getpH();
-      if(serialEcho) {
-        printpHToSerial(phMeas);
-        printpHToSD(phMeas);
-      }
-      double doMeas = getDOmgL();
-      if (serialEcho) {
-        printDOmgLToSerial(doMeas);
-        printDOmgLToSD(doMeas);
-      }
-      Serial.print(" ");
-      Serial.print(milli);
-      Serial.println(" ");
-    }
-    else if (getpH() > 8.29) {
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, HIGH);
-      digitalWrite(O2valve, LOW);
-      delay(100);
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(800);
-      milli = millis();
-      milliInt = (int)milli;
-      DateTime curr = rtc.now();
-      if (serialEcho) {
-        printTimeToSerial (curr);
-        printTimeToSD (curr);
-      }
-      double c = thermocouple.readCelsius();
-      if (serialEcho) {
-        printTempToSerial (c);
-        printTempToSD(c);
-      }
-      double phMeas = getpH();
-      if(serialEcho) {
-        printpHToSerial(phMeas);
-        printpHToSD(phMeas);
-      }
-      double doMeas = getDOmgL();
-      if (serialEcho) {
-        printDOmgLToSerial(doMeas);
-        printDOmgLToSD(doMeas);
-      }
-      Serial.print(" ");
-      Serial.print(milli);
-      Serial.println(" ");
-    }
-    else if (getpH() < 7.60 && getDOmgL() < 6.30) {
-      digitalWrite(N2valve, HIGH);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, HIGH);
-      delay(450);
-      digitalWrite(N2valve, HIGH);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(450);
-      milli = millis();
-      milliInt = (int)milli;
-      DateTime curr = rtc.now();
-      if (serialEcho) {
-        printTimeToSerial (curr);
-        printTimeToSD (curr);
-      }
-      double c = thermocouple.readCelsius();
-      if (serialEcho) {
-        printTempToSerial (c);
-        printTempToSD(c);
-      }
-      double phMeas = getpH();
-      if(serialEcho) {
-        printpHToSerial(phMeas);
-        printpHToSD(phMeas);
-      }
-      double doMeas = getDOmgL();
-      if (serialEcho) {
-        printDOmgLToSerial(doMeas);
-        printDOmgLToSD(doMeas);
-      }
-      Serial.print(" ");
-      Serial.print(milli);
-      Serial.println(" ");
-    }
-    else if (getpH() < 7.60 && getDOmgL() > 11.69) {
-      digitalWrite(N2valve, HIGH);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(450);
-      digitalWrite(N2valve, HIGH);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(450);
-      milli = millis();
-      milliInt = (int)milli;
-      DateTime curr = rtc.now();
-      if (serialEcho) {
-        printTimeToSerial (curr);
-        printTimeToSD (curr);
-      }
-      double c = thermocouple.readCelsius();
-      if (serialEcho) {
-        printTempToSerial (c);
-        printTempToSD(c);
-      }
-      double phMeas = getpH();
-      if(serialEcho) {
-        printpHToSerial(phMeas);
-        printpHToSD(phMeas);
-      }
-      double doMeas = getDOmgL();
-      if (serialEcho) {
-        printDOmgLToSerial(doMeas);
-        printDOmgLToSD(doMeas);
-      }
-      Serial.print(" ");
-      Serial.print(milli);
-      Serial.println(" ");
-    }
-    else if (getpH() < 7.60) {
-      digitalWrite(N2valve, HIGH);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, HIGH);
-      delay(200);
-      digitalWrite(N2valve, HIGH);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(600);
-      milli = millis();
-      milliInt = (int)milli;
-      DateTime curr = rtc.now();
-      if (serialEcho) {
-        printTimeToSerial (curr);
-        printTimeToSD (curr);
-      }
-      double c = thermocouple.readCelsius();
-      if (serialEcho) {
-        printTempToSerial (c);
-        printTempToSD(c);
-      }
-      double phMeas = getpH();
-      if(serialEcho) {
-        printpHToSerial(phMeas);
-        printpHToSD(phMeas);
-      }
-      double doMeas = getDOmgL();
-      if (serialEcho) {
-        printDOmgLToSerial(doMeas);
-        printDOmgLToSD(doMeas);
-      }
-      Serial.print(" ");
-      Serial.print(milli);
-      Serial.println(" ");
-    }
-  }
-  Serial.println();
-  myFile.close();
-  while (milli > 360000 && milli < 420001) {
-    if (getpH() > 8.29 && getpH() < 8.90 && getDOmgL() > 11.69 && getDOmgL() < 14.40) {
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(900);
-      milli = millis();
-      milliInt = (int)milli;
-      DateTime curr = rtc.now();
-      double c = thermocouple.readCelsius();
-      double phMeas = getpH();
-      double doMeas = getDOmgL();
-      if (serialEcho) {
-        printTimeToSerial (curr);
-        printTimeToSD (curr);
-      }
-      if (serialEcho) {
-        printTempToSerial (c);
-        printTempToSD(c);
-      }
-      if(serialEcho) {
-        printpHToSerial(phMeas);
-        printpHToSD(phMeas);
-      }
-      if (serialEcho) {
-        printDOmgLToSerial(doMeas);
-        printDOmgLToSD(doMeas);
-      }
-      Serial.print(" ");
-      Serial.print(milli);
-      Serial.println(" ");
-    }
-    else if (getpH() > 8.29 && getpH() < 8.90 && getDOmgL() > 14.39) {
-      digitalWrite(N2valve, HIGH);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(450);
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(450);
-      milli = millis();
-      milliInt = (int)milli;
-      DateTime curr = rtc.now();
-      double c = thermocouple.readCelsius();
-      double phMeas = getpH();
-      double doMeas = getDOmgL();
-      if (serialEcho) {
-        printTimeToSerial (curr);
-        printTimeToSD (curr);
-      }
-      if (serialEcho) {
-        printTempToSerial (c);
-        printTempToSD(c);
-      }
-      if(serialEcho) {
-        printpHToSerial(phMeas);
-        printpHToSD(phMeas);
-      }
-      if (serialEcho) {
-        printDOmgLToSerial(doMeas);
-        printDOmgLToSD(doMeas);
-      }
-      Serial.print(" ");
-      Serial.print(milli);
-      Serial.println(" ");
-    }
-    else if (getpH() > 8.29 && getpH() < 8.90 && getDOmgL() < 11.70) {
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, HIGH);
-      delay(250);
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(650);
-      milli = millis();
-      milliInt = (int)milli;
-      DateTime curr = rtc.now();
-      double c = thermocouple.readCelsius();
-      double phMeas = getpH();
-      double doMeas = getDOmgL();
-      if (serialEcho) {
-        printTimeToSerial (curr);
-        printTimeToSD (curr);
-      }
-      if (serialEcho) {
-        printTempToSerial (c);
-        printTempToSD(c);
-      }
-      if(serialEcho) {
-        printpHToSerial(phMeas);
-        printpHToSD(phMeas);
-      }
-      if (serialEcho) {
-        printDOmgLToSerial(doMeas);
-        printDOmgLToSD(doMeas);
-      }
-      Serial.print(" ");
-      Serial.print(milli);
-      Serial.println(" ");
-    }
-    else if (getpH() > 8.89 && getDOmgL() > 14.39) {
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, HIGH);
-      digitalWrite(O2valve, LOW);
-      delay(150);
-      digitalWrite(N2valve, HIGH);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(500);
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(250);
-      milli = millis();
-      milliInt = (int)milli;
-      DateTime curr = rtc.now();
-      if (serialEcho) {
-        printTimeToSerial (curr);
-        printTimeToSD (curr);
-      }
-      double c = thermocouple.readCelsius();
-      if (serialEcho) {
-        printTempToSerial (c);
-        printTempToSD(c);
-      }
-      double phMeas = getpH();
-      if(serialEcho) {
-        printpHToSerial(phMeas);
-        printpHToSD(phMeas);
-      }
-      double doMeas = getDOmgL();
-      if (serialEcho) {
-        printDOmgLToSerial(doMeas);
-        printDOmgLToSD(doMeas);
-      }
-      Serial.print(" ");
-      Serial.print(milli);
-      Serial.println(" ");
-    }
-    else if (getpH() > 8.89 && getDOmgL() < 11.70) {
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, HIGH);
-      digitalWrite(O2valve, LOW);
-      delay(150);
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, HIGH);
-      delay(400);
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(350);
-      milli = millis();
-      milliInt = (int)milli;
-      DateTime curr = rtc.now();
-      if (serialEcho) {
-        printTimeToSerial (curr);
-        printTimeToSD (curr);
-      }
-      double c = thermocouple.readCelsius();
-      if (serialEcho) {
-        printTempToSerial (c);
-        printTempToSD(c);
-      }
-      double phMeas = getpH();
-      if(serialEcho) {
-        printpHToSerial(phMeas);
-        printpHToSD(phMeas);
-      }
-      double doMeas = getDOmgL();
-      if (serialEcho) {
-        printDOmgLToSerial(doMeas);
-        printDOmgLToSD(doMeas);
-      }
-      Serial.print(" ");
-      Serial.print(milli);
-      Serial.println(" ");
-    }
-    else if (getpH() > 8.89) {
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, HIGH);
-      digitalWrite(O2valve, LOW);
-      delay(100);
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(800);
-      milli = millis();
-      milliInt = (int)milli;
-      DateTime curr = rtc.now();
-      if (serialEcho) {
-        printTimeToSerial (curr);
-        printTimeToSD (curr);
-      }
-      double c = thermocouple.readCelsius();
-      if (serialEcho) {
-        printTempToSerial (c);
-        printTempToSD(c);
-      }
-      double phMeas = getpH();
-      if(serialEcho) {
-        printpHToSerial(phMeas);
-        printpHToSD(phMeas);
-      }
-      double doMeas = getDOmgL();
-      if (serialEcho) {
-        printDOmgLToSerial(doMeas);
-        printDOmgLToSD(doMeas);
-      }
-      Serial.print(" ");
-      Serial.print(milli);
-      Serial.println(" ");
-    }
-    else if (getpH() < 8.30 && getDOmgL() < 11.70) {
-      digitalWrite(N2valve, HIGH);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, HIGH);
-      delay(450);
-      digitalWrite(N2valve, HIGH);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(450);
-      milli = millis();
-      milliInt = (int)milli;
-      DateTime curr = rtc.now();
-      if (serialEcho) {
-        printTimeToSerial (curr);
-        printTimeToSD (curr);
-      }
-      double c = thermocouple.readCelsius();
-      if (serialEcho) {
-        printTempToSerial (c);
-        printTempToSD(c);
-      }
-      double phMeas = getpH();
-      if(serialEcho) {
-        printpHToSerial(phMeas);
-        printpHToSD(phMeas);
-      }
-      double doMeas = getDOmgL();
-      if (serialEcho) {
-        printDOmgLToSerial(doMeas);
-        printDOmgLToSD(doMeas);
-      }
-      Serial.print(" ");
-      Serial.print(milli);
-      Serial.println(" ");
-    }
-    else if (getpH() < 8.30 && getDOmgL() > 14.39) {
-      digitalWrite(N2valve, HIGH);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(450);
-      digitalWrite(N2valve, HIGH);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(450);
-      milli = millis();
-      milliInt = (int)milli;
-      DateTime curr = rtc.now();
-      if (serialEcho) {
-        printTimeToSerial (curr);
-        printTimeToSD (curr);
-      }
-      double c = thermocouple.readCelsius();
-      if (serialEcho) {
-        printTempToSerial (c);
-        printTempToSD(c);
-      }
-      double phMeas = getpH();
-      if(serialEcho) {
-        printpHToSerial(phMeas);
-        printpHToSD(phMeas);
-      }
-      double doMeas = getDOmgL();
-      if (serialEcho) {
-        printDOmgLToSerial(doMeas);
-        printDOmgLToSD(doMeas);
-      }
-      Serial.print(" ");
-      Serial.print(milli);
-      Serial.println(" ");
-    }
-    else if (getpH() < 8.30) {
-      digitalWrite(N2valve, HIGH);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, HIGH);
-      delay(200);
-      digitalWrite(N2valve, HIGH);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(600);
-      milli = millis();
-      milliInt = (int)milli;
-      DateTime curr = rtc.now();
-      if (serialEcho) {
-        printTimeToSerial (curr);
-        printTimeToSD (curr);
-      }
-      double c = thermocouple.readCelsius();
-      if (serialEcho) {
-        printTempToSerial (c);
-        printTempToSD(c);
-      }
-      double phMeas = getpH();
-      if(serialEcho) {
-        printpHToSerial(phMeas);
-        printpHToSD(phMeas);
-      }
-      double doMeas = getDOmgL();
-      if (serialEcho) {
-        printDOmgLToSerial(doMeas);
-        printDOmgLToSD(doMeas);
-      }
-      Serial.print(" ");
-      Serial.print(milli);
-      Serial.println(" ");
-    }
-  }
-  Serial.println();
-  myFile.close();
-  while (milli > 420000 && milli < 480001) {
-    if (getpH() > 7.59 && getpH() < 8.30 && getDOmgL() > 6.29 && getDOmgL() < 11.70) {
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(900);
-      milli = millis();
-      milliInt = (int)milli;
-      DateTime curr = rtc.now();
-      double c = thermocouple.readCelsius();
-      double phMeas = getpH();
-      double doMeas = getDOmgL();
-      if (serialEcho) {
-        printTimeToSerial (curr);
-        printTimeToSD (curr);
-      }
-      if (serialEcho) {
-        printTempToSerial (c);
-        printTempToSD(c);
-      }
-      if(serialEcho) {
-        printpHToSerial(phMeas);
-        printpHToSD(phMeas);
-      }
-      if (serialEcho) {
-        printDOmgLToSerial(doMeas);
-        printDOmgLToSD(doMeas);
-      }
-      Serial.print(" ");
-      Serial.print(milli);
-      Serial.println(" ");
-    }
-    else if (getpH() > 7.59 && getpH() < 8.30 && getDOmgL() > 11.69) {
-      digitalWrite(N2valve, HIGH);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(450);
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(450);
-      milli = millis();
-      milliInt = (int)milli;
-      DateTime curr = rtc.now();
-      double c = thermocouple.readCelsius();
-      double phMeas = getpH();
-      double doMeas = getDOmgL();
-      if (serialEcho) {
-        printTimeToSerial (curr);
-        printTimeToSD (curr);
-      }
-      if (serialEcho) {
-        printTempToSerial (c);
-        printTempToSD(c);
-      }
-      if(serialEcho) {
-        printpHToSerial(phMeas);
-        printpHToSD(phMeas);
-      }
-      if (serialEcho) {
-        printDOmgLToSerial(doMeas);
-        printDOmgLToSD(doMeas);
-      }
-      Serial.print(" ");
-      Serial.print(milli);
-      Serial.println(" ");
-    }
-    else if (getpH() > 7.59 && getpH() < 8.30 && getDOmgL() < 6.30) {
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, HIGH);
-      delay(250);
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(650);
-      milli = millis();
-      milliInt = (int)milli;
-      DateTime curr = rtc.now();
-      double c = thermocouple.readCelsius();
-      double phMeas = getpH();
-      double doMeas = getDOmgL();
-      if (serialEcho) {
-        printTimeToSerial (curr);
-        printTimeToSD (curr);
-      }
-      if (serialEcho) {
-        printTempToSerial (c);
-        printTempToSD(c);
-      }
-      if(serialEcho) {
-        printpHToSerial(phMeas);
-        printpHToSD(phMeas);
-      }
-      if (serialEcho) {
-        printDOmgLToSerial(doMeas);
-        printDOmgLToSD(doMeas);
-      }
-      Serial.print(" ");
-      Serial.print(milli);
-      Serial.println(" ");
-    }
-    else if (getpH() > 8.29 && getDOmgL() > 11.69) {
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, HIGH);
-      digitalWrite(O2valve, LOW);
-      delay(150);
-      digitalWrite(N2valve, HIGH);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(500);
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(250);
-      milli = millis();
-      milliInt = (int)milli;
-      DateTime curr = rtc.now();
-      if (serialEcho) {
-        printTimeToSerial (curr);
-        printTimeToSD (curr);
-      }
-      double c = thermocouple.readCelsius();
-      if (serialEcho) {
-        printTempToSerial (c);
-        printTempToSD(c);
-      }
-      double phMeas = getpH();
-      if(serialEcho) {
-        printpHToSerial(phMeas);
-        printpHToSD(phMeas);
-      }
-      double doMeas = getDOmgL();
-      if (serialEcho) {
-        printDOmgLToSerial(doMeas);
-        printDOmgLToSD(doMeas);
-      }
-      Serial.print(" ");
-      Serial.print(milli);
-      Serial.println(" ");
-    }
-    else if (getpH() > 8.29 && getDOmgL() < 6.30) {
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, HIGH);
-      digitalWrite(O2valve, LOW);
-      delay(150);
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, HIGH);
-      delay(400);
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(350);
-      milli = millis();
-      milliInt = (int)milli;
-      DateTime curr = rtc.now();
-      if (serialEcho) {
-        printTimeToSerial (curr);
-        printTimeToSD (curr);
-      }
-      double c = thermocouple.readCelsius();
-      if (serialEcho) {
-        printTempToSerial (c);
-        printTempToSD(c);
-      }
-      double phMeas = getpH();
-      if(serialEcho) {
-        printpHToSerial(phMeas);
-        printpHToSD(phMeas);
-      }
-      double doMeas = getDOmgL();
-      if (serialEcho) {
-        printDOmgLToSerial(doMeas);
-        printDOmgLToSD(doMeas);
-      }
-      Serial.print(" ");
-      Serial.print(milli);
-      Serial.println(" ");
-    }
-    else if (getpH() > 8.29) {
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, HIGH);
-      digitalWrite(O2valve, LOW);
-      delay(100);
-      digitalWrite(N2valve, LOW);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(800);
-      milli = millis();
-      milliInt = (int)milli;
-      DateTime curr = rtc.now();
-      if (serialEcho) {
-        printTimeToSerial (curr);
-        printTimeToSD (curr);
-      }
-      double c = thermocouple.readCelsius();
-      if (serialEcho) {
-        printTempToSerial (c);
-        printTempToSD(c);
-      }
-      double phMeas = getpH();
-      if(serialEcho) {
-        printpHToSerial(phMeas);
-        printpHToSD(phMeas);
-      }
-      double doMeas = getDOmgL();
-      if (serialEcho) {
-        printDOmgLToSerial(doMeas);
-        printDOmgLToSD(doMeas);
-      }
-      Serial.print(" ");
-      Serial.print(milli);
-      Serial.println(" ");
-    }
-    else if (getpH() < 7.60 && getDOmgL() < 6.30) {
-      digitalWrite(N2valve, HIGH);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, HIGH);
-      delay(450);
-      digitalWrite(N2valve, HIGH);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(450);
-      milli = millis();
-      milliInt = (int)milli;
-      DateTime curr = rtc.now();
-      if (serialEcho) {
-        printTimeToSerial (curr);
-        printTimeToSD (curr);
-      }
-      double c = thermocouple.readCelsius();
-      if (serialEcho) {
-        printTempToSerial (c);
-        printTempToSD(c);
-      }
-      double phMeas = getpH();
-      if(serialEcho) {
-        printpHToSerial(phMeas);
-        printpHToSD(phMeas);
-      }
-      double doMeas = getDOmgL();
-      if (serialEcho) {
-        printDOmgLToSerial(doMeas);
-        printDOmgLToSD(doMeas);
-      }
-      Serial.print(" ");
-      Serial.print(milli);
-      Serial.println(" ");
-    }
-    else if (getpH() < 7.60 && getDOmgL() > 11.69) {
-      digitalWrite(N2valve, HIGH);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(450);
-      digitalWrite(N2valve, HIGH);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(450);
-      milli = millis();
-      milliInt = (int)milli;
-      DateTime curr = rtc.now();
-      if (serialEcho) {
-        printTimeToSerial (curr);
-        printTimeToSD (curr);
-      }
-      double c = thermocouple.readCelsius();
-      if (serialEcho) {
-        printTempToSerial (c);
-        printTempToSD(c);
-      }
-      double phMeas = getpH();
-      if(serialEcho) {
-        printpHToSerial(phMeas);
-        printpHToSD(phMeas);
-      }
-      double doMeas = getDOmgL();
-      if (serialEcho) {
-        printDOmgLToSerial(doMeas);
-        printDOmgLToSD(doMeas);
-      }
-      Serial.print(" ");
-      Serial.print(milli);
-      Serial.println(" ");
-    }
-    else if (getpH() < 7.60) {
-      digitalWrite(N2valve, HIGH);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, HIGH);
-      delay(200);
-      digitalWrite(N2valve, HIGH);
-      digitalWrite(CO2valve, LOW);
-      digitalWrite(O2valve, LOW);
-      delay(600);
-      milli = millis();
-      milliInt = (int)milli;
-      DateTime curr = rtc.now();
-      if (serialEcho) {
-        printTimeToSerial (curr);
-        printTimeToSD (curr);
-      }
-      double c = thermocouple.readCelsius();
-      if (serialEcho) {
-        printTempToSerial (c);
-        printTempToSD(c);
-      }
-      double phMeas = getpH();
-      if(serialEcho) {
-        printpHToSerial(phMeas);
-        printpHToSD(phMeas);
-      }
-      double doMeas = getDOmgL();
-      if (serialEcho) {
-        printDOmgLToSerial(doMeas);
-        printDOmgLToSD(doMeas);
-      }
-      Serial.print(" ");
-      Serial.print(milli);
-      Serial.println(" ");
-    }
-  }
-  Serial.println();
-  myFile.close();
-  */
+  
 }
 
 ////    FUNCTIONS   ////
